@@ -33,7 +33,25 @@
    front-end user component. This component ensures that whatever
    data the front-end component requests will be serviced accurately
    and as soon as possible, from the database.
-
+   
+** Systems
+   Systems take in inputs and give out a particular output. This
+   happens when state variables are changed, due to the given input.
+   Seeing as a relation connects state variables with each other, a
+   change in one would also result in a change in another. Here, we
+   focus on what the changes are, as supposed to how the change takes
+   place.
+   
+** Entities
+   For every entity type (can be abstract), we have an entity
+   set. Fundamentally, we have as entity as something that stores
+   data. Now it is necessary to analyze the user requirements to
+   construct suitable relations within the system. This can also
+   conveniently be analyzed with Entity Relation (ER) Diagrams. These
+   basically involve representing entities as circles, connecting
+   them with arrows, signifying the relations they have with each
+   other. 
+   
 * Relational data model
 
 ** What we've learnt so far

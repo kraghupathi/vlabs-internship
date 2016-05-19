@@ -1,0 +1,66 @@
+#+TITLE: Building a Web application: Ground up to the cloud
+#+AUTHOR: Raghupathi Kammari
+#+DATE: [2016-05-17 Tue]
+
+* OVERVIEW
+      Here we will understand the basic concepts of a web app. 
+
+* INTRODUCTION
+** web application
+      A web application has many interfaces. It has server interface,
+      client interface and a database. A user makes a request and the
+      browser generates the URL and is sent to the web server.
+
+* list of technologies       
+  - [[http://www.python.org][Python]] :: Python will be the main language of implementation in this project.
+       
+  - [[http://flask.pocoo.org/][Flask]]  :: The framework that will be used will be flask of version 0.10.1
+  
+* Data models
+   we discussed about the data model for the user application.we discussed 
+   about the notations to be used and also discussed some abstract entity types.
+   used regular expressions and cardinality constraints.Learnt about system
+   state and type structures
+
+* Requirments
+* Entities
+   + User
+   + Email
+   + Name
+   + Role
+   + session
+
+* Relations
+* Table       
+ 
+|----------------------------+--------------+--------------+----------------+-----------------|
+| operation                  | credentials  | Referential  | Effect and/or  | Remarks         |
+| signature                  |              | integrity    | output         |                 |
+|----------------------------+--------------+--------------+----------------+-----------------|
+| addUser(u:User, s:Session) | s.role=admin | u-user set   | failed/success | adds a new user |
+|                            |              |              |                |                 |
+|----------------------------+--------------+--------------+----------------+-----------------|
+| delUser(u:User, s:session) | s.role=admin | u:user set   | failed/success | deletes a       |
+|                            |              |              |                | user            |
+|----------------------------+--------------+--------------+----------------+-----------------|
+| setName(u:User,n:Name,     | s.role=admin | u:user set   |                | sets a name     |
+| s:session)                 |              |              |                | for a user      |
+|----------------------------+--------------+--------------+----------------+-----------------|
+| ListUsers(u:User,          | s.role=admin | u:user set   |                | Lists all the   |
+| s:session)                 |              |              |                | users           |
+|----------------------------+--------------+--------------+----------------+-----------------|
+| sortListUsers(U:User,      | s.role=admin | u:user set   |                | Lists all the   |
+| s:session)                 |              |              |                | users in sorted |
+|                            |              |              |                | way             |
+|----------------------------+--------------+--------------+----------------+-----------------|
+| getrole(u:User,s:session)  | s.user=      | s:sessionSet | admin/user     | shows whether a |
+|                            | admin/user   |              |                | user is Admin   |
+|                            |              |              |                | or User         |
+|----------------------------+--------------+--------------+----------------+-----------------|
+| setDetails(U:user,s:       | s.user=admin | s:sessionSet |                | setup details   |
+| session)                   | OR user      |              |                | of user         |
+|----------------------------+--------------+--------------+----------------+-----------------|
+| getDetails(u:user,         | s.user=admin | s:sessionSet |                | shows details   |
+| s:session)                 | or user      |              |                | of users        |
+|----------------------------+--------------+--------------+----------------+-----------------|
+                                                                                              
