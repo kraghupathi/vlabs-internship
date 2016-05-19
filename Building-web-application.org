@@ -3,8 +3,7 @@
 #+DATE: [2016-05-17 Tue]
 
 * OVERVIEW
-      Here we will understand the basic concepts of a web app. We
-      will also khlkh
+      Here we will understand the basic concepts of a web app. 
 
 * INTRODUCTION
 ** web application
@@ -17,8 +16,6 @@
        
   - [[http://flask.pocoo.org/][Flask]]  :: The framework that will be used will be flask of version 0.10.1
   
-  -[[/home/meghana/Downloads/IMG_20160517_092640205.jpg][Image]]
- 
 * Data models
    we discussed about the data model for the user application.we discussed 
    about the notations to be used and also discussed some abstract entity types.
