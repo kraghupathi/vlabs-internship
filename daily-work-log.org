@@ -16,7 +16,7 @@
      + system state 
      + operations
  
-** [2016-05-16 Wed]
+** [2016-05-18 Wed]
     + Discussed about Object Oriented Programming.
     + Conflicts arising with data
     + Got familier with Constructors, getters, setters and invarients 
