@@ -20,7 +20,7 @@ wget http://ftp.openvz.org/debian/archive.key
 #+BEGIN_EXAMPLE
 apt-key add archive.key
 #+END_EXAMPLE
-2. Install OpenVZ kernel
+2.Install OpenVZ kernel
 #+BEGIN_EXAMPLE
 Update software sources using command:
 #+END_EXAMPLE
@@ -35,7 +35,7 @@ Or, if you still have i686:
 #+BEGIN_EXAMPLE
 apt-get update && apt-get install linux-image-openvz-686
 #+END_EXAMPLE
-3. Install the kernel and tools 
+3.Install the kernel and tools 
 Change the sysctl variables in /etc/sysctl.conf
 #+BEGIN_EXAMPLE
 # On Hardware Node we generally need
@@ -58,17 +58,17 @@ Change the sysctl variables in /etc/sysctl.conf
   net.ipv4.conf.default.send_redirects = 1
   net.ipv4.conf.all.send_redirects = 0
 #+END_EXAMPLE
-4. Apply the sysctl changes 
+4.Apply the sysctl changes 
 #+BEGIN_EXAMPLE
 sudo sysctl -p
 #+END_EXAMPLE
-5. Create a symlink to /vz because most of the vz tools expects the OpenVZ
+5.Create a symlink to /vz because most of the vz tools expects the OpenVZ
    folders to reside there. This step is not necessary, but can eliminate
    further problems when other vz related components are installed.
 #+BEGIN_EXAMPLE
 sudo ln -s /var/lib/vz /vz
 #+END_EXAMPLE
-6. Install OpenVz usage statistics tools
+6.Install OpenVz usage statistics tools
 #+BEGIN_EXAMPLE
 sudo apt-get install vzctl vzquota ploop vzstats
 #+END_EXAMPLE
@@ -84,7 +84,7 @@ And, change it to:
 #+BEGIN_EXAMPLE
 NEIGHBOUR_DEVS=all
 #+END_EXAMPLE
-That¡¯s it. We have successfully installed OpenVZ.
+ThatÂ¡Â¯s it. We have successfully installed OpenVZ.
 * OpenVZ Guests
 ** Template(s)
 1.Creating Container's in OpenVZ
