@@ -1,0 +1,44 @@
+#+TITLE: Ubuntu 14.04 Quick Tip: Hide Grub Boot Menu While Booting
+#+AUTHOR: Raghupathi Kammari
+#+DATE: 25-May-2016
+*Method 1*: Edit the config file.
+
+Press *Ctrl+Alt+T* on keyboard to open the terminal. When it opens, paste below
+command and run to edit the grub config file:
+#+BEGIN_EXAMPLE
+sudo gedit /etc/default/grub
+#+END_EXAMPLE
+When the file opens, remove =#= before =GRUB_HIDDEN_TIMEOUT=0= and set
+=GRUB_HIDDEN_TIMEOUT_QUIET=true=. So it looks like:
+#+BEGIN_EXAMPLE
+GRUB_DEFAULT=0
+GRUB_HIDDEN_TIMEOUT=0
+GRUB_HIDDEN_TIMEOUT_QUIET=true
+GRUB_TIMEOUT=10
+GRUB_DISTRIBUTOR=¡±`lsb_release -i -s 2> /dev/null || echo Debian`¡±
+GRUB_CMDLINE_LINUX_DEFAULT=¡±quiet splash¡±
+GRUB_CMDLINE_LINUX=¡±"
+#+END_EXAMPLE
+Save the file and apply the changes by running below command:
+#+BEGIN_EXAMPLE
+sudo update-grub
+#+END_EXAMPLE
+*Method 2*: Use graphical tool grub-customizer:
+
+Grub Customizer is a graphical interface to configure the =GRUB2/BURG= settings
+and menu entries. Press *Ctrl+Alt+T* to open terminal. When it opens, run below
+commands one by one to install it from developer¡¯s PPA:
+#+BEGIN_EXAMPLE
+sudo add-apt-repository ppa:danielrichter2007/grub-customizer 
+
+sudo apt-get update
+
+sudo apt-get install grub-customizer
+#+END_EXAMPLE
+Open the app and do below changes:
+
+ + Switch to General settings.
+ + un-check the boxes which say ¡°show menu¡± and ¡°look for other operating
+ + systems.¡±
+ + Click refresh button.
+ + Click Save button.

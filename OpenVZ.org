@@ -1,0 +1,145 @@
+#+TITLE: Install and Configure OpenVZ in Ubuntu 14.04_64 bit LTS.
+#+AUTHOR: Raghupathi Kammari
+#+DATE: 25-May-2016
+1. Add OpenVZ Repository
+Switch to root user:
+#+BEGIN_EXAMPLE
+sudo su
+#+END_EXAMPLE
+First, we will add OpenVZ Repository.
+#+BEGIN_EXAMPLE
+cat << EOF > /etc/apt/sources.list.d/openvz-rhel6.list
+deb http://download.openvz.org/debian wheezy main
+# deb http://download.openvz.org/debian wheezy-test main
+EOF
+#+END_EXAMPLE
+Import OpenVZ GPG key:
+#+BEGIN_EXAMPLE
+wget http://ftp.openvz.org/debian/archive.key
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+apt-key add archive.key
+#+END_EXAMPLE
+2. Install OpenVZ kernel
+#+BEGIN_EXAMPLE
+Update software sources using command:
+#+END_EXAMPLE
+#+BEGIN_EXAMPLE
+sudo apt-get update
+#+END_EXAMPLE
+Now, install OpenVZ kernel:
+#+BEGIN_EXAMPLE
+apt-get install linux-image-openvz-amd64
+#+END_EXAMPLE
+Or, if you still have i686:
+#+BEGIN_EXAMPLE
+apt-get update && apt-get install linux-image-openvz-686
+#+END_EXAMPLE
+3. Install the kernel and tools 
+Change the sysctl variables in /etc/sysctl.conf
+#+BEGIN_EXAMPLE
+# On Hardware Node we generally need
+# packet forwarding enabled and proxy arp disabled
+  
+  net.ipv4.conf.default.forwarding=1
+  net.ipv4.conf.default.proxy_arp=1
+  net.ipv4.ip_forward=1
+  
+# Enables source route verification
+  net.ipv4.conf.all.rp_filter = 1
+  
+# Enables the magic-sysrq key
+  kernel.sysrq = 1
+  
+# TCP Explict Congestion Notification
+# net.ipv4.tcp_ecn = 0
+  
+# we do not want all our interfaces to send redirects
+  net.ipv4.conf.default.send_redirects = 1
+  net.ipv4.conf.all.send_redirects = 0
+#+END_EXAMPLE
+4. Apply the sysctl changes 
+#+BEGIN_EXAMPLE
+sudo sysctl -p
+#+END_EXAMPLE
+5. Create a symlink to /vz because most of the vz tools expects the OpenVZ
+   folders to reside there. This step is not necessary, but can eliminate
+   further problems when other vz related components are installed.
+#+BEGIN_EXAMPLE
+sudo ln -s /var/lib/vz /vz
+#+END_EXAMPLE
+6. Install OpenVz usage statistics tools
+#+BEGIN_EXAMPLE
+sudo apt-get install vzctl vzquota ploop vzstats
+#+END_EXAMPLE
+If you want to use different subnet, you have to edit /etc/vz/vz.conf file,
+#+BEGIN_EXAMPLE
+vi /etc/vz/vz.conf
+#+END_EXAMPLE
+Find and uncomment the line:
+#+BEGIN_EXAMPLE
+NEIGHBOUR_DEVS=detect
+#+END_EXAMPLE
+And, change it to:
+#+BEGIN_EXAMPLE
+NEIGHBOUR_DEVS=all
+#+END_EXAMPLE
+That¡¯s it. We have successfully installed OpenVZ.
+* OpenVZ Guests
+** Template(s)
+1.Creating Container's in OpenVZ
+
+The list of available pre-created templates availale [[http://openvz.org/Download/template/precreated][here]] for dowbload minimal
+templates vzctl (It is a command, which is used to manage containers)
+#+BEGIN_EXAMPLE
+cd /vz/template/cache/ 
+#+END_EXAMPLE
+which is the default directory to store the downloaded templates.
+#+BEGIN_EXAMPLE
+sudo vzctl create 777 --ostemplate ubuntu-8.04-i386-minimal
+#+END_EXAMPLE
+In the example above CT ID of 777 is used; of course any other non-allocated ID
+could be used. 
+
+Once you have downloaded a template (for example
+ubuntu-8.04-i386-minimal.tar.gz) and placed it in "/var/lib/vz/template/cache"
+you can install it using the following command:
+
+2.Setting container's IP address. (This is just a temporary setting for the
+   update process to work)
+#+BEGIN_EXAMPLE
+ sudo vzctl set 777 --ipadd x.x.x.x --save
+#+END_EXAMPLE
+3.Setting DNS server for the container (This is just a temporary setting for
+   the update process to work)
+#+BEGIN_EXAMPLE
+sudo vzctl set 777 --nameserver x.x.x.x --save
+#+END_EXAMPLE
+4.Setting hostname for the container.
+#+BEGIN_EXAMPLE
+sudo vzctl set 777 --hostname new_hostname --save
+#+END_EXAMPLE
+5.Starting the container 
+#+BEGIN_EXAMPLE
+sudo vzctl start 777
+#+END_EXAMPLE
+6.Enter a container: 
+#+BEGIN_EXAMPLE
+vzctl enter 777
+#+END_EXAMPLE
+7.Stop the container 
+#+BEGIN_EXAMPLE
+sudo vzctl stop 777
+#+END_EXAMPLE
+8.Delete Container
+#+BEGIN_EXAMPLE
+sudo vzctl destroy 777
+#+END_EXAMPLE
+9.List running VPS 
+#+BEGIN_EXAMPLE
+sudo vzlist
+#+END_EXAMPLE
+10.List all VPS 
+#+BEGIN_EXAMPLE
+sudo vzlist -a
+#+END_EXAMPLE
