@@ -21,9 +21,7 @@ wget http://ftp.openvz.org/debian/archive.key
 apt-key add archive.key
 #+END_EXAMPLE
 2.Install OpenVZ kernel
-#+BEGIN_EXAMPLE
 Update software sources using command:
-#+END_EXAMPLE
 #+BEGIN_EXAMPLE
 sudo apt-get update
 #+END_EXAMPLE
