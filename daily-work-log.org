@@ -33,21 +33,26 @@
      include the user and session lists as pertaining to the system. System
      methods were created along with some static methods and their respective
      methods. ORM was not completed. (SQLAlchemy Framework)
+     
 ** Weekly  Summary
-   + What are the insights gained?
-   + What is my footprint in the realization of the project?
-
+     + What are the insights gained?
+       + Learnt to use git and emacs.
+       + learnt about data model, object model and ORM
+       + started working in groups to implement user directory application and
+         in the process learnt many new concepts
+    
+     + What is my footprint in the realization of the project?
+       + Understood the basics of developing a web application 
 ** [2016-05-23 Mon]
-+ I have done reading on AngularJS. The python tasks assigned to me weren't
-  completely executed, but sufficient progress is being made.
+     + We discussed some more concepts about Object relational model.
+     + Tried to implement ORM in our user directory application.
+     
 ** [2016-05-24 Tue]
-   I have been introduced to SQL alchemy. I worked on the commands for the
-   System object in DB form. I also have understood how databases work as well
-   as using them and modifying them with SQL.
+     + Continued implementing ORM in the user directory application
 ** [2016-05-25 Wed]
-   I wrote the test cases for the SQLAlchemy code, and then worked on Flask. I
-   wrote the basic code for the Rest APIs but didn't write the test cases for
-   them yet.  
+     + Implemented ORM
+     + Learnt about REST API
+     + Tried to implemrnt REST API in the usr directory application  
 
 * Month of June
 * Month of July
